@@ -1,0 +1,4 @@
+project_id = "wyqmcrqaxicimgdfttvq"
+
+[functions.send-sos-email]
+verify_jwt = false
