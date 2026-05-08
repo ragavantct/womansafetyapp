@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Shield, Siren, MapPin, Mail, Bell, ArrowRight, Heart } from "lucide-react";
+import { Shield, Siren, MapPin, Mail, Bell, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Landing });
 
@@ -94,10 +94,6 @@ function Landing() {
           </div>
         ))}
       </section>
-
-      <footer className="border-t py-8 text-center text-sm text-muted-foreground flex items-center justify-center gap-1.5">
-        Built with <Heart className="size-3.5 text-emergency fill-emergency" /> for safer journeys
-      </footer>
     </div>
   );
 }
