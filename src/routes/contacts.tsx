@@ -43,14 +43,14 @@ function Contacts() {
   };
 
   return (
-    <div className="p-6 lg:p-10 max-w-4xl mx-auto animate-fade-in">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-bold font-display">Emergency Contacts</h1>
+    <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-10 animate-fade-in overflow-x-hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display">Emergency Contacts</h1>
           <p className="text-sm text-muted-foreground mt-1">Your trusted circle who will be notified in emergencies.</p>
         </div>
         <button onClick={() => { setEditing(null); setOpen(true); }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emergency text-emergency-foreground font-semibold hover:opacity-90 transition-opacity shadow-sm">
+          className="w-full sm:w-auto justify-center flex items-center gap-2 px-4 py-2 rounded-xl bg-emergency text-emergency-foreground font-semibold hover:opacity-90 transition-opacity shadow-sm">
           <Plus className="size-4" /> Add Contact
         </button>
       </div>
@@ -64,18 +64,18 @@ function Contacts() {
       ) : (
         <div className="grid gap-4">
           {contacts.map((c) => (
-            <div key={c.id} className="p-5 rounded-2xl border bg-card flex items-center justify-between group hover:border-emergency/30 transition-colors">
-              <div className="flex items-center gap-4">
-                <div className="size-12 rounded-full bg-secondary grid place-items-center font-bold text-emergency">{c.name[0].toUpperCase()}</div>
-                <div>
+            <div key={c.id} className="p-4 sm:p-5 rounded-2xl border bg-card flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 group hover:border-emergency/30 transition-colors">
+              <div className="min-w-0 flex items-center gap-3 sm:gap-4">
+                <div className="size-12 shrink-0 rounded-full bg-secondary grid place-items-center font-bold text-emergency">{c.name[0].toUpperCase()}</div>
+                <div className="min-w-0">
                   <div className="font-semibold">{c.name}</div>
-                  <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1.5"><Phone className="size-3" /> {c.phone}</span>
-                    <span className="flex items-center gap-1.5"><Mail className="size-3" /> {c.email}</span>
+                  <div className="grid gap-1 mt-1 text-sm text-muted-foreground">
+                    <span className="min-w-0 flex items-center gap-1.5"><Phone className="size-3 shrink-0" /> <span className="truncate">{c.phone}</span></span>
+                    <span className="min-w-0 flex items-center gap-1.5"><Mail className="size-3 shrink-0" /> <span className="truncate">{c.email}</span></span>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex items-center justify-end gap-1 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                 <button onClick={() => { setEditing(c); setOpen(true); }} className="p-2 rounded-lg hover:bg-accent text-muted-foreground hover:text-foreground"><Edit2 className="size-4" /></button>
                 <button onClick={() => onDelete(c.id)} className="p-2 rounded-lg hover:bg-destructive/10 text-muted-foreground hover:text-destructive"><Trash2 className="size-4" /></button>
               </div>
@@ -97,7 +97,7 @@ function ContactModal({ contact, onSave, onClose }: any) {
 
   return (
     <div className="fixed inset-0 z-50 grid place-items-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-md bg-card rounded-3xl border shadow-2xl p-8 animate-float">
+      <div className="w-full max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto bg-card rounded-3xl border shadow-2xl p-5 sm:p-8 animate-float">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold font-display">{contact ? "Edit Contact" : "Add Emergency Contact"}</h2>
           <button onClick={onClose} className="p-2 rounded-lg hover:bg-accent"><X className="size-5" /></button>
@@ -107,7 +107,7 @@ function ContactModal({ contact, onSave, onClose }: any) {
           <Input label="Phone Number" value={phone} onChange={setPhone} icon={Phone} placeholder="+1 (555) 000-0000" />
           <Input label="Email Address" type="email" value={email} onChange={setEmail} icon={Mail} placeholder="jane@example.com" />
           <Input label="Relationship" value={rel} onChange={setRel} icon={Shield} placeholder="Friend, Mother, Sister…" required={false} />
-          <div className="pt-4 flex gap-3">
+          <div className="pt-4 grid sm:grid-cols-2 gap-3">
             <button type="button" onClick={onClose} className="flex-1 py-3 rounded-xl border font-semibold hover:bg-accent transition-colors">Cancel</button>
             <button className="flex-1 py-3 rounded-xl bg-emergency text-emergency-foreground font-semibold hover:opacity-90 transition-opacity">Save Contact</button>
           </div>

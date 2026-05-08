@@ -30,8 +30,8 @@ function LocationPage() {
   };
 
   return (
-    <div className="p-6 lg:p-10 max-w-5xl mx-auto animate-fade-in">
-      <h1 className="text-3xl font-bold font-display">Live Location</h1>
+    <div className="w-full max-w-5xl mx-auto p-4 sm:p-6 lg:p-10 animate-fade-in overflow-x-hidden">
+      <h1 className="text-2xl sm:text-3xl font-bold font-display">Live Location</h1>
       <p className="text-muted-foreground mt-1">Your current GPS coordinates and map preview.</p>
 
       <div className="mt-8 rounded-3xl border overflow-hidden bg-card" style={{ boxShadow: "var(--shadow-card)" }}>
@@ -48,25 +48,25 @@ function LocationPage() {
             </div>
           )}
         </div>
-        <div className="p-5 flex flex-wrap items-center gap-3 justify-between">
-          <div className="flex items-start gap-3">
-            <MapPin className="size-5 text-emergency mt-0.5" />
-            <div>
+        <div className="p-4 sm:p-5 grid gap-4 lg:flex lg:items-center lg:justify-between">
+          <div className="min-w-0 flex items-start gap-3">
+            <MapPin className="size-5 shrink-0 text-emergency mt-0.5" />
+            <div className="min-w-0">
               <div className="font-semibold">{coords ? `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}` : "—"}</div>
-              <a href={coords?.url} target="_blank" rel="noopener" className="text-sm text-emergency hover:underline truncate block max-w-xs">
+              <a href={coords?.url} target="_blank" rel="noopener" className="text-sm text-emergency hover:underline break-all block max-w-full lg:max-w-xs">
                 {coords?.url ?? ""}
               </a>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <button onClick={fetchLoc} className="flex items-center gap-2 px-4 py-2 rounded-xl border bg-background hover:bg-accent">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button onClick={fetchLoc} className="justify-center flex items-center gap-2 px-4 py-2 rounded-xl border bg-background hover:bg-accent">
               <RefreshCw className={`size-4 ${loading ? "animate-spin" : ""}`} /> Refresh
             </button>
             <button onClick={() => { if (coords) { navigator.clipboard.writeText(coords.url); toast.success("Copied"); } }}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl border bg-background hover:bg-accent">
+              className="justify-center flex items-center gap-2 px-4 py-2 rounded-xl border bg-background hover:bg-accent">
               <Copy className="size-4" /> Copy link
             </button>
-            <button onClick={share} className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emergency text-emergency-foreground font-semibold hover:opacity-90">
+            <button onClick={share} className="justify-center flex items-center gap-2 px-4 py-2 rounded-xl bg-emergency text-emergency-foreground font-semibold hover:opacity-90">
               <Share2 className="size-4" /> Share
             </button>
           </div>

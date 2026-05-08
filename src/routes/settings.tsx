@@ -51,19 +51,19 @@ function Settings() {
     }
   };
 
-  if (loading) return <div className="p-10 text-center text-muted-foreground">Loading settings…</div>;
+  if (loading) return <div className="p-6 sm:p-10 text-center text-muted-foreground">Loading settings…</div>;
 
   return (
-    <div className="p-6 lg:p-10 max-w-4xl mx-auto animate-fade-in">
+    <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-10 animate-fade-in overflow-x-hidden">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold font-display">Preferences</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold font-display">Preferences</h1>
         <p className="text-sm text-muted-foreground mt-1">Manage your account and emergency trigger behaviors.</p>
       </div>
 
       <div className="grid gap-8">
         <section>
           <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Profile Information</h2>
-          <div className="p-6 rounded-2xl border bg-card space-y-6">
+          <div className="p-4 sm:p-6 rounded-2xl border bg-card space-y-6">
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <label className="text-sm font-medium block mb-1.5">Full Name</label>
@@ -82,9 +82,9 @@ function Settings() {
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 border border-dashed">
-              <Shield className="size-5 text-muted-foreground" />
-              <div className="text-sm text-muted-foreground">Registered email: <span className="font-semibold text-foreground">{user?.email}</span></div>
+            <div className="min-w-0 flex items-start gap-3 p-4 rounded-xl bg-muted/50 border border-dashed">
+              <Shield className="size-5 shrink-0 text-muted-foreground" />
+              <div className="min-w-0 text-sm text-muted-foreground">Registered email: <span className="font-semibold text-foreground break-all">{user?.email}</span></div>
             </div>
           </div>
         </section>
@@ -101,9 +101,9 @@ function Settings() {
           </div>
         </section>
 
-        <div className="flex justify-end">
+        <div className="flex justify-stretch sm:justify-end">
           <button onClick={onSave}
-            className="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity shadow-lg">
+            className="w-full sm:w-auto justify-center flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity shadow-lg">
             <Save className="size-4" /> Save Changes
           </button>
         </div>
@@ -122,16 +122,16 @@ interface ToggleProps {
 
 function Toggle({ icon: Icon, title, desc, value, onChange }: ToggleProps) {
   return (
-    <div className="flex items-center justify-between p-4 px-6">
-      <div className="flex items-center gap-4">
-        <div className="size-10 rounded-xl bg-muted grid place-items-center"><Icon className="size-5 text-muted-foreground" /></div>
-        <div>
+    <div className="flex items-start justify-between gap-3 p-4 sm:px-6">
+      <div className="min-w-0 flex items-start gap-3 sm:gap-4">
+        <div className="size-10 shrink-0 rounded-xl bg-muted grid place-items-center"><Icon className="size-5 text-muted-foreground" /></div>
+        <div className="min-w-0">
           <div className="font-semibold">{title}</div>
           <div className="text-xs text-muted-foreground">{desc}</div>
         </div>
       </div>
       <button onClick={() => onChange(!value)}
-        className={`w-12 h-6 rounded-full relative transition-colors ${value ? "bg-emergency" : "bg-muted"}`}>
+        className={`mt-2 shrink-0 w-12 h-6 rounded-full relative transition-colors ${value ? "bg-emergency" : "bg-muted"}`}>
         <div className={`absolute top-1 size-4 rounded-full bg-white transition-all ${value ? "left-7" : "left-1"}`} />
       </button>
     </div>

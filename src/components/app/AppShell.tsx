@@ -73,18 +73,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       {open && <div onClick={() => setOpen(false)} className="fixed inset-0 z-30 bg-black/50 lg:hidden" />}
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
         <header className="lg:hidden flex items-center justify-between px-4 py-3 border-b shadow-sm" style={{ backgroundColor: "var(--card)" }}>
-          <button onClick={() => setOpen(true)} className="p-2 rounded-lg hover:bg-accent">
+          <button onClick={() => setOpen(true)} className="shrink-0 p-2 rounded-lg hover:bg-accent">
             <Menu className="size-5" />
           </button>
-          <div className="flex items-center gap-2">
-            <Shield className="size-5 text-emergency" />
-            <span className="font-display font-bold">Safety Reach</span>
+          <div className="min-w-0 flex items-center gap-2">
+            <Shield className="size-5 shrink-0 text-emergency" />
+            <span className="font-display font-bold truncate">Safety Reach</span>
           </div>
           <div className="w-9" />
         </header>
-        <main className="flex-1 overflow-auto bg-background" style={{ backgroundColor: "var(--background)" }}>{children}</main>
+        <main className="flex-1 min-w-0 overflow-auto overflow-x-hidden bg-background" style={{ backgroundColor: "var(--background)" }}>{children}</main>
       </div>
     </div>
   );

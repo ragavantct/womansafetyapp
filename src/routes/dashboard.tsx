@@ -46,30 +46,30 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-full p-5 sm:p-6 lg:p-10 max-w-6xl mx-auto animate-fade-in bg-background">
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
-        <div>
+    <div className="min-h-full w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 animate-fade-in bg-background overflow-x-hidden">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+        <div className="min-w-0">
           <p className="text-sm text-muted-foreground">Welcome back{name ? `, ${name.split(" ")[0]}` : ""}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold font-display mt-1">Safety Dashboard</h1>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display mt-1">Safety Dashboard</h1>
         </div>
         <StatusPill emergency={emergency} onReset={() => setEmergency(false)} />
       </div>
 
       <div
-        className="rounded-3xl border p-7 sm:p-8 lg:p-12 grid place-items-center text-center"
+        className="rounded-3xl border p-5 sm:p-8 lg:p-12 grid place-items-center text-center"
         style={{ backgroundColor: "var(--card)", boxShadow: "var(--shadow-card)" }}
       >
         {countdown === null ? (
           <>
             <button onClick={triggerSOS} disabled={sending} aria-label="Send SOS"
-              className="size-44 lg:size-56 rounded-full grid place-items-center text-white font-bold font-display text-2xl tracking-wider animate-pulse-glow hover:scale-105 active:scale-95 transition-transform disabled:opacity-70 disabled:hover:scale-100"
+              className="size-40 sm:size-44 lg:size-56 rounded-full grid place-items-center text-white font-bold font-display text-2xl tracking-wider animate-pulse-glow hover:scale-105 active:scale-95 transition-transform disabled:opacity-70 disabled:hover:scale-100"
               style={{ background: "var(--gradient-emergency)" }}>
               <div className="flex flex-col items-center gap-2">
                 <Siren className="size-12" />
                 {sending ? "SENDING..." : "SOS"}
               </div>
             </button>
-            <p className="mt-6 text-muted-foreground max-w-md">Tap once for emergency. Sends your live location and an email alert to your trusted contacts immediately.</p>
+            <p className="mt-6 text-sm sm:text-base text-muted-foreground max-w-md">Tap once for emergency. Sends your live location and an email alert to your trusted contacts immediately.</p>
           </>
         ) : (
           <>
@@ -97,11 +97,11 @@ function Dashboard() {
 
 function StatusPill({ emergency, onReset }: { emergency: boolean; onReset: () => void }) {
   return emergency ? (
-    <button onClick={onReset} className="flex items-center gap-2 px-4 py-2 rounded-full bg-emergency text-emergency-foreground text-sm font-semibold animate-pulse">
+    <button onClick={onReset} className="w-fit max-w-full flex items-center gap-2 px-4 py-2 rounded-full bg-emergency text-emergency-foreground text-xs sm:text-sm font-semibold animate-pulse text-left">
       <span className="size-2 rounded-full bg-white" /> Emergency Active — tap to mark safe
     </button>
   ) : (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-safe text-safe-foreground text-sm font-semibold shadow-sm">
+    <div className="w-fit flex items-center gap-2 px-4 py-2 rounded-full bg-safe text-safe-foreground text-xs sm:text-sm font-semibold shadow-sm">
       <span className="size-2 rounded-full bg-white" /> You are Safe
     </div>
   );

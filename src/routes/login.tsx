@@ -90,7 +90,7 @@ function Login() {
 
 export function AuthShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <div className="min-h-screen grid lg:grid-cols-2 overflow-x-hidden">
       <div className="hidden lg:flex flex-col justify-between p-12 text-white" style={{ background: "var(--gradient-hero)" }}>
         <Link to="/" className="flex items-center gap-2">
           <div className="size-9 rounded-xl bg-emergency grid place-items-center"><Shield className="size-5" /></div>
@@ -102,9 +102,9 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
         </div>
         <div className="text-xs text-white/50">© Safety Reach</div>
       </div>
-      <div className="flex items-center justify-center p-6 lg:p-12">
+      <div className="flex items-center justify-center p-4 sm:p-6 lg:p-12">
         <div className="w-full max-w-sm animate-fade-in">
-          <h1 className="text-3xl font-bold font-display">{title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold font-display">{title}</h1>
           <p className="mt-2 text-muted-foreground text-sm">{subtitle}</p>
           <div className="mt-8">{children}</div>
         </div>
